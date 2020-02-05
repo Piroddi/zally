@@ -36,8 +36,8 @@ class UseOpenApiRule(rulesConfig: Config) {
     private val jsonSchemaValidators: Map<OpenApiVersion, JsonSchemaValidator>
 
     private val defaultSchemas = mapOf(
-        OpenApiVersion.SWAGGER to "schemas/openapi-2-schema.json",
-        OpenApiVersion.OPENAPI3 to "schemas/openapi-3-schema.json"
+        OpenApiVersion.SWAGGER to "schemas/swagger-schema.json",
+        OpenApiVersion.OPENAPI3 to "schemas/openapi3-schema.json"
     )
 
     init {
@@ -105,8 +105,8 @@ class UseOpenApiRule(rulesConfig: Config) {
             val schema = ObjectTreeReader().read(schemaUrl)
             JsonSchemaValidator(name.version, schema, schemaRedirects = mapOf(
                 referencedOnlineSchema to localResource,
-                "http://swagger.io/v2/schema.json" to Resources.getResource("schemas/openapi-2-schema.json").toString(),
-                "http://openapis.org/v3/schema.json" to Resources.getResource("schemas/openapi-3-schema.json").toString())
+                "http://swagger.io/v2/schema.json" to Resources.getResource("schemas/swagger-schema.json").toString(),
+                "http://openapis.org/v3/schema.json" to Resources.getResource("schemas/openapi3-schema.json").toString())
             )
         }.associateBy { OpenApiVersion.valueOf(it.name.toUpperCase()) }
     }
