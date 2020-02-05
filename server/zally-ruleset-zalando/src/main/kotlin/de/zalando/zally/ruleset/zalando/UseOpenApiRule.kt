@@ -106,7 +106,8 @@ class UseOpenApiRule(rulesConfig: Config) {
             JsonSchemaValidator(name.version, schema, schemaRedirects = mapOf(
                 referencedOnlineSchema to localResource,
                 "http://swagger.io/v2/schema.json" to Resources.getResource("schemas/swagger-schema.json").toString(),
-                "http://openapis.org/v3/schema.json" to Resources.getResource("schemas/openapi3-schema.json").toString())
+                "http://openapis.org/v3/schema.json" to Resources.getResource("schemas/openapi3-schema.json").toString(),
+                "https://spec.openapis.org/oas/3.0/schema/2019-04-02" to Resources.getResource("schemas/openapi3-schema.json").toString())
             )
         }.associateBy { OpenApiVersion.valueOf(it.name.toUpperCase()) }
     }
